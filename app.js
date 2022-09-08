@@ -1,4 +1,8 @@
 const button = document.getElementById("btn");
+const formName = document.querySelector("name");
+const formHeightFeet = document.querySelector("feet");
+const formHeightInches = document.querySelector("inches");
+const formDiet = document.querySelector("diet");
 
     // Create Dino Constructor
     class Dinosaur {
@@ -15,13 +19,15 @@ const button = document.getElementById("btn");
 
     // Create Dino Objects
     // populate an array with dino data from the json file
+    // the below map() method creates a new array of new Dinosuar objects
     let dinoData = [];
-    fetch('dino.json')
-    .then(res => res.json())
-    .then(data => {
-        dinoData = data.Dinos.map(dino =>
-            new Dinosaur(dino))
-    })
+    (function () {
+        fetch("dino.json")
+    .then(response => response.json())
+    .then(jsonData => {
+        dinoData = jsonData.Dinos.map((dino) => new Dinosaur(dino))
+        })
+    })();
     console.log(dinoData);
     
 
@@ -38,11 +44,11 @@ const button = document.getElementById("btn");
     // Use IIFE to get human data from form and create a human object
     const humanData = (
         function() {
-            let name = getInputValue("name");
-            let heightFeet = ParseFloat((getInputValue("feet")));
-            let heightInches = ParseFloat((getInputValue("inches")));
+            let name = formName.value;
+            let heightFeet = ParseFloat(formHeightFeet.value);
+            let heightInches = ParseFloat(formHeightInches.value);
             let height = heightFeet + heightInches;
-            let diet = getInputValue("diet");
+            let diet = formDiet.value;
 
             return function () {
                 currentHuman = new Human(this.name, this.height, this.diet);
