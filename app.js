@@ -1,8 +1,8 @@
 const button = document.getElementById("btn");
-const formName = document.querySelector("name");
-const formHeightFeet = document.querySelector("feet");
-const formHeightInches = document.querySelector("inches");
-const formDiet = document.querySelector("diet");
+const formName = document.getElementById("name");
+const formHeightFeet = document.getElementById("feet");
+const formHeightInches = document.getElementById("inches");
+const formDiet = document.getElementById("diet");
 
     // Create Dino Constructor
     class Dinosaur {
@@ -45,8 +45,8 @@ const formDiet = document.querySelector("diet");
     const humanData = (
         function() {
             let name = formName.value;
-            let heightFeet = ParseFloat(formHeightFeet.value);
-            let heightInches = ParseFloat(formHeightInches.value);
+            let heightFeet = parseFloat(formHeightFeet.value);
+            let heightInches = parseFloat(formHeightInches.value);
             let height = heightFeet + heightInches;
             let diet = formDiet.value;
 
